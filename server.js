@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const Player = require('./game/Player');
+const MemoryStore = require('memorystore')(session);
 const { getFreeGame } = require('./utils');
 
 const games = require('./data');
@@ -15,6 +16,9 @@ app.use(session({
     secret: 'XyYRGaTQdPqkVP5fdfdMv44R3Le8Rwc49mQSOFWOGnAgB3KuYZuUo5eSoQVR',
     resave: false,
     saveUninitialized: true,
+    store: new MemoryStore({
+        checkPeriod: 86400000 
+    }),
     cookie: {
         httpOnly: true,
         maxAge: 364 * 24 * 60 * 60 * 1000
