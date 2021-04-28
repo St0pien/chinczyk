@@ -4,6 +4,8 @@ const path = require('path');
 const Player = require('./game/Player');
 const { getFreeGame } = require('./utils');
 
+const games = require('./data');
+
 
 const app = express();
 const PORT = 3000 | process.env.PORT;
@@ -17,8 +19,6 @@ app.use(session({
         httpOnly: true
     }
 }))
-
-const games = [];
 
 app.get('/', (req, res) => {
     if (req.session.nick) {
