@@ -9,7 +9,7 @@ class Game {
         this.active = false;
         this.currentPlayer = null;
         this.winner = null;
-        this.turnTime = 60;
+        this.turnTime = 45;
     }
 
     isFree() {

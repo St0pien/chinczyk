@@ -12,14 +12,16 @@ export default class WinnerScreen {
         this.httpClient = new HttpClient('/api/game/leave/');
         this.leaveBtn = document.querySelector('#leave');
         this.leaveBtn.addEventListener('click', () => { 
-            this.httpClient.get('')
-            location.replace('http://google.com');
+            this.httpClient.get('').then(() => {
+                location.replace('/waiting/');
+            });
         });
     }
 
     nextGame() {
-        this.httpClient.get('');
-        location.replace('/');
+        this.httpClient.get('').then(() => {
+            location.replace('/');
+        });
     }
 
     update({ game }) {

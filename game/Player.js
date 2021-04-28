@@ -12,14 +12,11 @@ class Player {
         for (let i=0; i<4; i++) {
             this.pawns.push({
                 id: i,
-                field: i,
-                home: false,
-                finish: true
+                field: 0,
+                home: true,
+                finish: false
             });
         }
-
-        this.pawns[3].finish = false;
-        this.pawns[3].field = 38;
 
         this.timeLeft = null;
     }

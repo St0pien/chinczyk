@@ -9,7 +9,6 @@ export default class Dice {
         this.button.addEventListener('click', () => this.buttonHandler());
         this.img = document.createElement('img');
         this.httpClient = new HttpClient('/api/game/dice');
-        this.canRemoveImage = false;
         this.synth = window.speechSynthesis;
 
         const setVoice = () => {
@@ -21,7 +20,6 @@ export default class Dice {
 
     update({ game, player }) {
         if (game.currentPlayer && game.currentPlayer.color == player.color) {
-            this.ref.innerHTML = '';
             this.isRolling = true;
             if (game.currentPlayer.movesToMake) {
                 this.img.src = `${this.imgsPath}${game.currentPlayer.movesToMake}.png`;
@@ -30,13 +28,16 @@ export default class Dice {
                 this.ref.appendChild(this.button);
             }
         } else {
-            if (!this.removal) {
-                this.removal = setTimeout(() => this.canRemoveImage = true, 2000);
-            }
-
-            if (this.canRemoveImage) {
+            if (!this.rolled) {
                 this.ref.innerHTML = '';
-                this.canRemoveImage = false;
+            } else {
+                this.isRolling = false;
+                setTimeout(() => {
+                    if (!this.isRolling) {
+                        this.ref.innerHTML = '';
+                        this.rolled = false;
+                    }
+                }, 1000)
             }
         }
     }
@@ -49,11 +50,12 @@ export default class Dice {
 
     async buttonHandler() {
         const value = (await this.httpClient.get()).movesToMake;
-        this.img.src = `${this.imgsPath}${value}.png`;
-        this.speak(value);
-        this.ref.prepend(this.img);
-        this.button.remove();
-        if (this.removal) clearTimeout(this.removal);
-        this.removal = setTimeout(() => this.canRemoveImage = true, 2000);
+        if (value) {
+            this.rolled = true;
+            this.img.src = `${this.imgsPath}${value}.png`;
+            this.speak(value);
+            this.ref.prepend(this.img);
+            this.button.remove();
+        }
     }
 }

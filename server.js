@@ -17,7 +17,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        maxAge: 365 * 24 * 60 * 60 * 1000
+        maxAge: 364 * 24 * 60 * 60 * 1000
     }
 }))
 
@@ -119,7 +119,7 @@ app.post('/api/player/move', (req, res) => {
         }
     }
 
-    res.send("Stop it!");
+    res.send(JSON.stringify({ status: "STOP it!" }));
 });
 
 app.get('/api/game/dice', (req, res) => {
@@ -140,7 +140,7 @@ app.get('/api/game/dice', (req, res) => {
         }
     }
 
-    res.send("Stop it!");
+    res.send(JSON.stringify({ status: "STOP it!" }));
 });
 
 app.get('/api/game/leave', (req, res) => {
@@ -161,7 +161,7 @@ app.get('/api/game/leave', (req, res) => {
         req.session.playerid = null;
     }
 
-    res.send('OK');
+    res.send({ status: "OK" });
 });
 
 

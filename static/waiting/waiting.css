@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.message {
+    width: 100vw;;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 5em;
+    font-weight: bold;
+    background: black;
+    color: white;
+}
+
+.message a {
+    margin: 1em 0;
+    padding: 1em;
+    background: linear-gradient(white, #ddd);
+    color: black;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: .5em;
+}

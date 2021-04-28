@@ -20,7 +20,6 @@ class App {
             this.board.update(status);
             this.dice.update(status);
             this.winScreen.update(status);
-            console.log(status);
         }
         callback();
         this.interval = setInterval(callback, 1000);
