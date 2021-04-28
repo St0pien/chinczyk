@@ -20,6 +20,7 @@ export default class Dice {
 
     update({ game, player }) {
         if (game.currentPlayer && game.currentPlayer.color == player.color) {
+            this.img.remove();
             this.isRolling = true;
             if (game.currentPlayer.movesToMake) {
                 this.img.src = `${this.imgsPath}${game.currentPlayer.movesToMake}.png`;
