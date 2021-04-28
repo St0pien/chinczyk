@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.nickPopup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#nickInput {
+    font-size: 2em;
+    background: none;
+    color: white;
+    border: none;
+    border-bottom: 2px solid #aaa;
+    border-radius: 2px;
+    outline: none;
+}
+
+#nickInput:focus {
+    border-bottom: 2px solid white;
+}
+
+#nickButton {
+    font-size: 2em;
+    margin: 2em;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: .2em 1em;
+    outline: none;
+    background: white;
+    border: 2px outset white;
+    cursor: pointer;
+}
+
+#nickButton:active {
+    border: 2px inset white;
+}
